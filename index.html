@@ -94,6 +94,7 @@ textarea{width:100%;padding:14px;border:2px solid #ddd;border-radius:10px;font-s
 <option value="">-- Select your class --</option>
 <option value="3089" data-teacher="Angela">3089 - Mon/Wed 6:30 PM (Angela)</option>
 <option value="3095" data-teacher="Angela">3095 - Mon/Wed 8:30 PM (Angela)</option>
+<option value="3097" data-teacher="Jonelle Williams">3097 - Tue/Thu 11:00 AM (Jonelle)</option>
 <option value="3101" data-teacher="Angela">3101 - Tue/Thu 6:30 PM (Angela)</option>
 <option value="3104" data-teacher="Angela">3104 - Tue/Thu 8:30 PM (Angela)</option>
 </select>
@@ -453,7 +454,9 @@ function submitToTeacher(){
     const integrityNote=typeof tabSwitchCount!=='undefined'&&tabSwitchCount>0?' [Tab switches: '+tabSwitchCount+']':'';
     const ta=document.getElementById('writingAnswer');
     if(ta)writingText=ta.value;
-    const writingContent=writingText+(typeof tabSwitchCount!=='undefined'&&tabSwitchCount>0?'\n\n[INTEGRITY NOTE: Student left test tab '+tabSwitchCount+' time(s)]':'');
+    const writingContent=writingText+(typeof tabSwitchCount!=='undefined'&&tabSwitchCount>0?'
+
+[INTEGRITY NOTE: Student left test tab '+tabSwitchCount+' time(s)]':'');
     const maxR=window._maxReading||0;
     const maxV=window._maxVocab||0;
     const maxG=window._maxGrammar||0;
@@ -529,7 +532,20 @@ function submitToTeacher(){
                 if(statusEl){
                     statusEl.style.background='#ffebee';
                     statusEl.style.border='2px solid #ef5350';
-                    const emailBody='Student: '+submissionData.name+'\nClass: '+submissionData.className+'\nTeacher: '+submissionData.teacher+'\nTest: B2 Final Test (JS1) — Session: '+submissionData.session+'\nTotal Score: '+submissionData.totalScore+' ('+submissionData.pct+')\n\nSection Scores:\n  Reading: '+submissionData.reading+'\n  Vocabulary: '+submissionData.vocab+'\n  Writing: '+submissionData.writingScore+'\n  Grammar: '+submissionData.grammarScore+'\n\nWriting Response:\n'+writingText;
+                    const emailBody='Student: '+submissionData.name+'
+Class: '+submissionData.className+'
+Teacher: '+submissionData.teacher+'
+Test: B2 Final Test (JS1) — Session: '+submissionData.session+'
+Total Score: '+submissionData.totalScore+' ('+submissionData.pct+')
+
+Section Scores:
+  Reading: '+submissionData.reading+'
+  Vocabulary: '+submissionData.vocab+'
+  Writing: '+submissionData.writingScore+'
+  Grammar: '+submissionData.grammarScore+'
+
+Writing Response:
+'+writingText;
                     statusEl.innerHTML='<div style="padding:20px;text-align:center"><div style="font-size:2em">⚠️</div><h3 style="color:#c62828;margin:10px 0">Submission Failed</h3><p style="color:#333;margin-bottom:15px">Your internet connection may be down. Your results are saved on this device.</p><p style="color:#333;margin-bottom:15px"><strong>Your Score: '+submissionData.totalScore+' ('+submissionData.pct+')</strong></p><p style="color:#333;margin-bottom:20px">Please click below to email your results to your teacher:</p><a href="mailto:patricia@sqaeducation.org?subject='+encodeURIComponent('Final Test Results - '+studentName)+'&body='+encodeURIComponent(emailBody)+'" style="display:inline-block;background:#00838F;color:#fff;padding:14px 28px;border-radius:10px;text-decoration:none;font-weight:600;font-size:16px">📧 Email Results to Teacher</a><p style="color:#888;font-size:12px;margin-top:15px">You can also screenshot this page as backup proof.</p><button onclick="trySubmit()" style="margin-top:10px;background:#F5A623;color:#fff;border:none;padding:10px 20px;border-radius:8px;cursor:pointer;font-weight:600">🔄 Try Submitting Again</button></div>';
                 }
             }
