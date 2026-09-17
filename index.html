@@ -585,7 +585,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     var nm=g('studentName')||(typeof studentName!=='undefined'?studentName:'')||'';
     var cl=g('className')||g('studentClass')||g('classSelect')||'';
     if(!nm&&!(q.get('sid')||q.get('email')))return null;
-    var wr=g('writingAnswer')||(typeof writingText!=='undefined'?writingText:'')||'';
+    var wr=g('writingAnswer')||g('writing')||g('writingText')||g('wText')||g('wtext')||g('writeText')||(typeof writingText!=='undefined'?writingText:'')||'';
     return {sid:(q.get('sid')||''),email:(q.get('email')||''),name:nm,className:cl,level:LV,session:SS,writingText:wr,speakingTranscript:'',scores:realScores()};
   }
   function portalSave(){
