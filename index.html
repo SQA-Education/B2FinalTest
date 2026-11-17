@@ -66,7 +66,7 @@ textarea{width:100%;padding:14px;border:2px solid #ddd;border-radius:10px;font-s
 .tab-warning{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#D32F2F;color:white;padding:25px 40px;border-radius:15px;font-size:1.3em;font-weight:700;z-index:2000;display:none;text-align:center;box-shadow:0 5px 30px rgba(0,0,0,.4)}
 @media(max-width:600px){body{padding:10px}.header{padding:20px 18px}.header h1{font-size:1.25em}.card{padding:20px}.question{padding:16px}.question h4{font-size:15px}.option{padding:12px}.btn{padding:14px}}
 </style>
-</head>
+<style>/* __sqaNoPullRefresh: stop accidental pull-to-refresh wiping homework */html,body{overscroll-behavior-y:contain}</style></head>
 <body>
 <div class="header">
     <h1>📋 SQA B2 Final Test - Job Skills 1</h1>
@@ -680,7 +680,7 @@ try{
   function activeSec(){var s=document.querySelector('.section.active');return s?s.id:'';}
   function secs(){return Array.prototype.slice.call(document.querySelectorAll('.section[id]'));}
   function fields(){return Array.prototype.slice.call(document.querySelectorAll('input,textarea,select'));}
-  function isResults(s){return /result|score/i.test(s)||s==='s5'||s==='s6';}
+  function isResults(s){if(/result|score/i.test(s))return true;var a=secs();return !!(a.length&&a[a.length-1].id===s&&(s==='s5'||s==='s6'));}
   var t=null, ind=null;
   function flash(){if(!ind){ind=document.createElement('div');ind.style.cssText='position:fixed;bottom:14px;right:14px;background:#1e9e5a;color:#fff;padding:7px 13px;border-radius:20px;font:600 13px system-ui;z-index:99998;opacity:0;transition:opacity .3s;box-shadow:0 3px 12px rgba(0,0,0,.2)';ind.textContent='✓ Saved';document.body.appendChild(ind);}ind.style.opacity='1';clearTimeout(ind._t);ind._t=setTimeout(function(){ind.style.opacity='0';},1200);}
   function snap(){var st={sec:activeSec(),h:{},f:[],g:{},t:Date.now()};
